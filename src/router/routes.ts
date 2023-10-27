@@ -1,11 +1,14 @@
+import { auth } from 'src/core/middlewares/AuthMiddleware';
+import { guest } from 'src/core/middlewares/GuestMiddleware';
 import { RouteRecordRaw } from 'vue-router';
 
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
-    component: () => import('layouts/MainLayout.vue'),
+    component: () => import('src/core/layouts/MainLayout.vue'),
+    meta: { middleware: [auth] },
     children: [
-      { path: '', component: () => import('pages/IndexPage.vue') },
+      { path: '', component: () => import('src/core/pages/IndexPage.vue') },
       {
         path: 'persona',
         name: 'persona',
@@ -19,12 +22,17 @@ const routes: RouteRecordRaw[] = [
       },
     ],
   },
+  {
+    path: '/login',
+    component: () => import('src/auth/LoginPage.vue'),
+    meta: { middleware: [guest] },
+  },
 
   // Always leave this as last one,
   // but you can also remove it
   {
     path: '/:catchAll(.*)*',
-    component: () => import('pages/ErrorNotFound.vue'),
+    component: () => import('src/core/pages/ErrorNotFound.vue'),
   },
 ];
 

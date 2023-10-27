@@ -1,0 +1,18 @@
+import TokenManager from 'src/core/utils/TokenManager';
+import { NavigationGuardNext, RouteLocation } from 'vue-router';
+
+export const guest = ({
+  to,
+  from,
+  next,
+}: {
+  to: RouteLocation;
+  from: RouteLocation;
+  next: NavigationGuardNext;
+}) => {
+  if (TokenManager.hasToken() && from.path != to.path) {
+    next(false);
+  } else {
+    next();
+  }
+};
