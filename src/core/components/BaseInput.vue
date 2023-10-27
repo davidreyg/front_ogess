@@ -48,7 +48,6 @@ const name = toRef(props, 'name');
 const {
   value: inputValue,
   errorMessage,
-  meta,
   handleBlur,
 } = useField(name, undefined, {
   initialValue: props.value,
