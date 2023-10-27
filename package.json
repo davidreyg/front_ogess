@@ -13,6 +13,7 @@
     "build": "quasar build"
   },
   "dependencies": {
+    "@grafikri/vue-middleware": "^1.0.0",
     "@quasar/extras": "^1.16.4",
     "@supercharge/sttp": "^1.4.0",
     "axios": "^1.2.1",

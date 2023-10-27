@@ -1,10 +1,9 @@
-/* eslint-disable */
+/* eslint-disable @typescript-eslint/ban-types */
+// typings.d.ts or router.ts
+import 'vue-router';
 
-/// <reference types="vite/client" />
-
-// Mocks all files ending in `.vue` showing them as plain Vue instances
-declare module '*.vue' {
-  import type { DefineComponent } from 'vue';
-  const component: DefineComponent<{}, {}, any>;
-  export default component;
+declare module 'vue-router' {
+  interface RouteMeta {
+    middleware?: Function[];
+  }
 }
