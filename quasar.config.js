@@ -63,7 +63,7 @@ module.exports = configure(function (/* ctx */) {
       // publicPath: '/',
       // analyze: true,
       env: {
-        API_BASE_URL: 'https://ogess_backend.dev.com/api',
+        API_BASE_URL: 'https://ogess_backend.dev.com/api/v1',
         TOKEN_NAME: 'TOKEN_NAME',
       },
       // rawDefine: {}
@@ -101,7 +101,7 @@ module.exports = configure(function (/* ctx */) {
       // directives: [],
 
       // Quasar plugins
-      plugins: ['Dialog', 'Notify'],
+      plugins: ['Dialog', 'Notify', 'LocalStorage'],
       cssAddon: true,
     },
 
