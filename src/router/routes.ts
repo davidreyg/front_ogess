@@ -25,7 +25,7 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/login',
     name: 'login',
-    component: () => import('src/auth/LoginPage.vue'),
+    component: () => import('src/auth/pages/LoginPage.vue'),
     meta: { middleware: [guest] },
   },
 
