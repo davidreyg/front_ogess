@@ -82,16 +82,4 @@ const { handleSubmit } = useForm({
 const onSubmit = handleSubmit((values) => {
   alert(JSON.stringify(values, null, 2));
 });
-const f = () => {
-  console.log('fffff');
-};
-import { date } from 'quasar';
-
-const date1 = new Date();
-const date2 = new Date(2000, 10, 30);
-const unit = 'days';
-
-const diff = date.getDateDiff(date1, date2, unit);
-// `diff` is 34 (days)
-console.log(Math.floor(diff / 365));
 </script>
