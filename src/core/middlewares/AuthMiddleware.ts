@@ -1,4 +1,4 @@
-import TokenManager from 'src/core/utils/TokenManager';
+import { TokenManager } from 'src/core/utils';
 import { NavigationGuardNext, RouteLocation } from 'vue-router';
 
 export const auth = ({

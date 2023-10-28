@@ -53,8 +53,8 @@
 </template>
 
 <script setup>
-import BaseCheckbox from 'src/components/BaseCheckbox.vue';
-import BaseInput from 'src/components/BaseInput.vue';
+import BaseCheckbox from 'src/core/components/BaseCheckbox.vue';
+import BaseInput from 'src/core/components/BaseInput.vue';
 
 import { useForm } from 'vee-validate';
 import * as Yup from 'yup';

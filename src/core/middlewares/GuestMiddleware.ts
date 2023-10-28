@@ -1,4 +1,4 @@
-import TokenManager from 'src/core/utils/TokenManager';
+import { TokenManager } from 'src/core/utils';
 import { NavigationGuardNext, RouteLocation } from 'vue-router';
 
 export const guest = ({
@@ -11,7 +11,7 @@ export const guest = ({
   next: NavigationGuardNext;
 }) => {
   if (TokenManager.hasToken() && from.path != to.path) {
-    next(false);
+    next('/');
   } else {
     next();
   }

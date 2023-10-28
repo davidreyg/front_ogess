@@ -1,5 +1,4 @@
-import { auth } from 'src/core/middlewares/AuthMiddleware';
-import { guest } from 'src/core/middlewares/GuestMiddleware';
+import { guest, auth } from 'src/core/middlewares';
 import { RouteRecordRaw } from 'vue-router';
 
 const routes: RouteRecordRaw[] = [
@@ -16,6 +15,7 @@ const routes: RouteRecordRaw[] = [
         children: [
           {
             path: '',
+            name: 'persona.index',
             component: () => import('../persona/pages/PersonaIndex.vue'),
           },
         ],
@@ -24,6 +24,7 @@ const routes: RouteRecordRaw[] = [
   },
   {
     path: '/login',
+    name: 'login',
     component: () => import('src/auth/LoginPage.vue'),
     meta: { middleware: [guest] },
   },

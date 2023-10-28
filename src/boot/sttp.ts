@@ -1,5 +1,5 @@
 import Sttp from '@supercharge/sttp';
-import TokenManager from 'src/core/utils/TokenManager';
+import { TokenManager } from 'src/core/utils';
 
 export const sttp = Sttp.withOptions({
   baseURL: process.env.API_BASE_URL,

@@ -1,17 +1,23 @@
 import { LocalStorage } from 'quasar';
 
-export default class TokenManager {
-  private static _token = LocalStorage.getItem<string>(process.env.TOKEN_NAME);
+export class TokenManager {
+  constructor() {
+    LocalStorage.set(process.env.TOKEN_NAME, null);
+  }
 
   static get token() {
-    return TokenManager._token;
+    return LocalStorage.getItem<string>(process.env.TOKEN_NAME);
   }
 
   static hasToken(): boolean {
-    return !!TokenManager._token;
+    return !!TokenManager.token;
   }
 
-  removeToken() {
-    TokenManager._token = null;
+  static removeToken() {
+    LocalStorage.remove(process.env.TOKEN_NAME);
+  }
+
+  static setToken(token: string) {
+    LocalStorage.set(process.env.TOKEN_NAME, token);
   }
 }
