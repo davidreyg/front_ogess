@@ -30,7 +30,7 @@
 import BaseInput from 'src/core/components/BaseInput.vue';
 import { useForm } from 'vee-validate';
 import * as Yup from 'yup';
-import { AuthService, ILoginRequest } from './';
+import { AuthService, ILoginRequest } from 'src/auth';
 import { useQuasar } from 'quasar';
 import { useRouter } from 'vue-router';
 const $q = useQuasar();
