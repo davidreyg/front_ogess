@@ -12,6 +12,9 @@
     <template #error>
       {{ errorMessage }}
     </template>
+    <template v-if="!!prefixIcon" #prepend>
+      <q-icon :name="prefixIcon" />
+    </template>
   </q-input>
 </template>
 <script setup lang="ts">
@@ -35,6 +38,10 @@ const props = defineProps({
   label: {
     type: String,
     required: true,
+  },
+  prefixIcon: {
+    type: String,
+    default: undefined,
   },
 });
 
