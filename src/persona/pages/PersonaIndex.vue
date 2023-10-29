@@ -12,6 +12,7 @@
           <q-card class="my-card shadow-12">
             <q-card-section>
               <div class="q-pa-md">
+                <datos-personales />
                 <q-form @submit="onSubmit" @reset="onReset">
                   <div class="row q-col-gutter-sm">
                     <q-input
@@ -134,53 +135,45 @@
   </q-page>
 </template>
 
-<script>
+<script setup>
 import { useQuasar } from 'quasar';
 import { ref } from 'vue';
 import PersonaFormCreate from '../components/PersonaFormCreate.vue';
 import PersonaFormTable from '../components/PersonaFormTable.vue';
-export default {
-  components: { PersonaFormCreate, PersonaFormTable },
-  setup() {
-    const $q = useQuasar();
+import DatosPersonales from '../components/DatosPersonales.vue';
 
-    const name = ref(null);
-    const age = ref(null);
-    const accept = ref(false);
+const $q = useQuasar();
 
-    return {
-      step: ref(1),
-      name,
-      age,
-      accept,
+const name = ref(null);
+const age = ref(null);
+const accept = ref(false);
+const step = ref(1);
 
-      onSubmit() {
-        if (accept.value !== true) {
-          $q.notify({
-            color: 'red-5',
-            textColor: 'white',
-            icon: 'warning',
-            message: 'You need to accept the license and terms first',
-          });
-        } else {
-          $q.notify({
-            color: 'green-4',
-            textColor: 'white',
-            icon: 'cloud_done',
-            message: 'Submitted',
-          });
-        }
-      },
+function onSubmit() {
+  if (accept.value !== true) {
+    $q.notify({
+      color: 'red-5',
+      textColor: 'white',
+      icon: 'warning',
+      message: 'You need to accept the license and terms first',
+    });
+  } else {
+    $q.notify({
+      color: 'green-4',
+      textColor: 'white',
+      icon: 'cloud_done',
+      message: 'Submitted',
+    });
+  }
+}
 
-      onReset() {
-        name.value = null;
-        age.value = null;
-        accept.value = false;
-      },
-      onClick() {
-        $q.notify({ message: 'Correcto', type: 'positive' });
-      },
-    };
-  },
-};
+function onReset() {
+  name.value = null;
+  age.value = null;
+  accept.value = false;
+}
+
+function onClick() {
+  $q.notify({ message: 'Correcto', type: 'positive' });
+}
 </script>
