@@ -1,6 +1,33 @@
 <template>
   <form class="row q-col-gutter-sm items-center" @submit="onSubmit">
-    <base-input label="DNI" name="dni" class="col-3" :type="'text'" />
+    <base-input
+      label="DNI"
+      name="dni"
+      class="col-3"
+      :type="'text'"
+      :loading="reniecLoading"
+    >
+      <template #after>
+        <q-btn
+          round
+          flat
+          icon="search"
+          class="text-primary"
+          @click="searchDniApi"
+        >
+          <q-tooltip
+            transition-show="flip-right"
+            transition-hide="flip-left"
+            anchor="top middle"
+            self="bottom middle"
+            :offset="[10, 10]"
+            class="text-body2"
+          >
+            Consultar en RENIEC
+          </q-tooltip>
+        </q-btn>
+      </template>
+    </base-input>
     <base-input
       label="Fecha de Nacimiento"
       name="fecha_nacimiento"
@@ -69,6 +96,7 @@ import { useForm } from 'vee-validate';
 import * as Yup from 'yup';
 import { IPersona } from 'src/persona/models';
 import {
+  useDniApi,
   useInitialPersonaData,
   useOcupationActions,
 } from 'src/persona/composables';
@@ -85,6 +113,7 @@ const dialogOcupacion = ref(false);
 const { ocupaciones, estados_civiles, fetchOcupaciones } =
   useInitialPersonaData();
 const { saveOcupacion } = useOcupationActions();
+const { fetchDniApi, reniecLoading, reniecResponse } = useDniApi();
 const validationSchema = Yup.object().shape({
   dni: Yup.number()
     .typeError('DNI debe ser un numero')
@@ -99,12 +128,17 @@ const validationSchema = Yup.object().shape({
     .typeError('Edad debe ser un numero')
     .required()
     .label('Edad'),
-  fecha_nacimiento: Yup.date().required().label('Fecha de Nacimiento'),
+  nombres: Yup.string().trim().required().label('Nombres'),
+  apellidos: Yup.string().trim().required().label('Apellidos'),
+  fecha_nacimiento: Yup.date()
+    .typeError('Debe ser una fecha valida')
+    .required()
+    .label('Fecha de Nacimiento'),
   jefe: Yup.boolean().required(),
   ocupacion: Yup.number().required().label('Ocupacion'),
   estado_civil: Yup.number().required().label('Estado Civil'),
 });
-const { handleSubmit, setFieldValue } = useForm<IPersona>({
+const { handleSubmit, setFieldValue, values } = useForm<IPersona>({
   validationSchema,
 });
 
@@ -118,6 +152,21 @@ const onOcupationFormSubmit = async (values: IOcupacion) => {
     fetchOcupaciones();
     dialogOcupacion.value = false;
   });
+};
+
+// CONSULTA API RENIEC
+const searchDniApi = async () => {
+  await fetchDniApi(values.dni + '');
+  setFieldValue('nombres', reniecResponse.value.nombres);
+  setFieldValue(
+    'apellidos',
+    reniecResponse.value
+      ? reniecResponse.value.apellidoPaterno.concat(
+          ' ',
+          reniecResponse.value.apellidoMaterno
+        )
+      : ''
+  );
 };
 
 /** COMPUTADAS */

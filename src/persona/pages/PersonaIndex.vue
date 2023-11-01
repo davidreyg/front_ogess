@@ -27,7 +27,6 @@
           <q-stepper
             ref="stepper"
             v-model="step"
-            pper
             color="primary"
             animated
             keep-alive
@@ -60,10 +59,10 @@ const step = ref(1);
 
 const navigateStep = (next: boolean) => {
   if (next) {
-    console.log(step.value);
     // TODO: Falta hacer cuando finalice los steps..
 
     step.value = step.value + 1;
+    console.log(step.value);
     return;
   } else {
     step.value = step.value - 1;
