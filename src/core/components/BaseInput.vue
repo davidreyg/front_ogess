@@ -15,6 +15,9 @@
     <template v-if="!!prefixIcon" #prepend>
       <q-icon :name="prefixIcon" />
     </template>
+    <template #after>
+      <slot name="after"></slot>
+    </template>
   </q-input>
 </template>
 <script setup lang="ts">
@@ -40,6 +43,10 @@ const props = defineProps({
     required: true,
   },
   prefixIcon: {
+    type: String,
+    default: undefined,
+  },
+  appendIcon: {
     type: String,
     default: undefined,
   },
