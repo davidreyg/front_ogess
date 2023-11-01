@@ -10,8 +10,6 @@ const routes: RouteRecordRaw[] = [
       { path: '', component: () => import('src/core/pages/IndexPage.vue') },
       {
         path: 'persona',
-        name: 'persona',
-        component: () => import('../persona/PersonaMain.vue'),
         children: [
           {
             path: '',
