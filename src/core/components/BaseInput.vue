@@ -5,9 +5,9 @@
     :label="label"
     :error="!!errorMessage"
     bottom-slots
-    :hide-bottom-space="!errorMessage"
     outlined
     @blur="handleBlur"
+    @update:model-value="handleChange"
   >
     <template #error>
       {{ errorMessage }}
@@ -28,7 +28,7 @@ const props = defineProps({
     required: true,
   },
   value: {
-    type: String,
+    type: [String, Number],
     default: undefined,
   },
   name: {
@@ -56,6 +56,7 @@ const {
   value: inputValue,
   errorMessage,
   handleBlur,
+  handleChange,
 } = useField(name, undefined, {
   initialValue: props.value,
 });
