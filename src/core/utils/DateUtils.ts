@@ -1,13 +1,10 @@
-import { date } from 'quasar';
+import moment from 'moment';
 
-export function caculateBirthday(stringDate: string): number {
-  if (!date.isValid(stringDate)) {
-    throw 'Error .. fecha invalida';
-  }
-
-  const unit = 'days';
-  const date1 = new Date();
-  const date2 = date.extractDate('30/05/1998', 'DD/MM/YYYY');
-  const diff = date.getDateDiff(date1, date2, unit);
-  return Math.floor(diff / 365);
+export function calculateBirthday(stringDate: string): number {
+  const birthDate = moment(stringDate, 'YYYY-MM-DD', true);
+  if (birthDate.isValid()) {
+    const today = moment();
+    // console.log(today.diff(birthDate, 'years'));
+    return today.diff(birthDate, 'years');
+  } else return 0;
 }
