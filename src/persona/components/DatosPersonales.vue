@@ -39,7 +39,7 @@
   </q-form>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import BaseInput from 'src/core/components/BaseInput.vue';
 
 import { useForm } from 'vee-validate';
