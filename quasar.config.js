@@ -63,7 +63,7 @@ module.exports = configure(function (/* ctx */) {
       // publicPath: '/',
       // analyze: true,
       env: {
-        API_BASE_URL: 'https://ogess_backend.dev.com/api/v1',
+        API_BASE_URL: 'http://ogess_backend.dev.com/api/v1',
         TOKEN_NAME: 'TOKEN_NAME',
       },
       // rawDefine: {}
@@ -91,7 +91,7 @@ module.exports = configure(function (/* ctx */) {
       config: {},
 
       // iconSet: 'material-icons', // Quasar icon set
-      // lang: 'en-US', // Quasar language pack
+      lang: 'es', // Quasar language pack
 
       // For special cases outside of where the auto-import strategy can have an impact
       // (like functional components as one of the examples),

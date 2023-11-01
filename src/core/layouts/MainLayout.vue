@@ -40,7 +40,7 @@
 
     <q-drawer v-model="leftDrawerOpen" show-if-above side="left" bordered>
       <q-list>
-        <q-item v-ripple clickable :to="{ name: 'persona.index' }">
+        <q-item v-ripple clickable to="/persona">
           <q-item-section avatar>
             <q-icon color="primary" name="bluetooth" />
           </q-item-section>
