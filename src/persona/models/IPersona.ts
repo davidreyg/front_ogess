@@ -3,4 +3,6 @@ export interface IPersona {
   edad: number;
   fecha_nacimiento: string | Date;
   jefe: boolean;
+  ocupacion: number;
+  estado_civil: number;
 }
