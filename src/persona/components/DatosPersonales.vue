@@ -1,22 +1,41 @@
 <template>
-  <q-form class="row q-col-gutter-sm items-center" @submit="onSubmit">
+  <q-form class="row q-col-gutter-sm items-center q-pa-md">
     <base-input
       label="Encuestador"
       name="dni"
       class="col-7"
-      :type="'text'"
+      type="text"
+      readonly
+    />
+    <base-input label="Fecha" name="dni" class="col-5" type="text" readonly />
+    <base-input
+      label="Unidad Ejecutora"
+      name="unidad_ejecutora"
+      class="col-3"
+      type="text"
       readonly
     />
     <base-input
-      label="Fecha"
-      name="dni"
-      class="col-5"
-      :type="'text'"
+      label="Red Salud"
+      name="red_salud"
+      class="col-3"
+      type="text"
       readonly
     />
-    <div class="col-6">
-      <q-btn color="primary" icon="check" label="OK" type="submit" />
-    </div>
+    <base-input
+      label="Micro Redes"
+      name="micro_redes"
+      class="col-3"
+      type="text"
+      readonly
+    />
+    <base-input
+      label="Establecimiento de Salud"
+      name="red_salud"
+      class="col-3"
+      type="text"
+      readonly
+    />
   </q-form>
 </template>
 
@@ -42,11 +61,7 @@ const validationSchema = Yup.object().shape({
     .required()
     .oneOf([Yup.ref('password')], 'Passwords do not match'),
 });
-const { handleSubmit } = useForm({
+useForm({
   validationSchema,
-});
-
-const onSubmit = handleSubmit((values) => {
-  alert(JSON.stringify(values, null, 2));
 });
 </script>
